@@ -5,10 +5,146 @@
   <title>CoffeeClubAngular</title>
   <base href="/">
 
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900" rel="stylesheet">
+
+<style type="text/css">
+*  {
+    margin:0;
+    padding:0;
+}
+
+html, body {height:100%;}
+
+.geral {
+    min-height:100%;
+    position:relative;
+    width:800px;
+}
+
+.footer {
+	/*
+    position:absolute;
+    bottom:0;
+    width:100%;
+    */
+    
+}
+
+.content {overflow:hidden;}
+.aside {width:200px;}
+.fleft {float:left;}
+.fright {float:right;}
+
+/*Tirando a seta do dropdown toggle:*/
+.dropdown-toggle::after {
+    display:none
+}
+
+/*Tirando as setas do input type=number:*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+
+/*Background Hero css -- Cada número é uma cor diferente*/
+@import "https://fonts.googleapis.com/css?family=Lato:300";
+.hero {
+  position: relative;
+  width: 100%;
+  /*height: 110vh;
+  color: white;
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+  border-bottom: solid 5px white;
+  */
+}
+.hero:before, .hero:after {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 0;
+  right: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+/*
+.hero:before {
+  content: "Good news, everyone!";
+  font-size: 46px;
+  line-height: 60px;
+  margin-top: -40px;
+}
+.hero:after {
+  content: "I've taught the toaster to feel love!";
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 20px;
+}
+.hero--intro:before {
+  content: "Gradient backgrounds";
+}
+.hero--intro:after {
+  content: "A curated collection";
+}
+*/
+.hero--intro {
+  background: linear-gradient(135deg, #4567b2 20%, #8ab9ff 80%);
+}
+.hero--1 {
+  background: linear-gradient(135deg, #76ad39 20%, #cdff8a 80%);
+}
+.hero--2 {
+  background: linear-gradient(135deg, #b24592 20%, #f15f79 80%);
+}
+.hero--3 {
+  background: linear-gradient(135deg, #432b58 20%, #734b6f 80%);
+}
+.hero--4 {
+  background: linear-gradient(135deg, #6a0b71 20%, #b1176c 80%);
+}
+.hero--5 {
+  background: linear-gradient(135deg, #ff5f6d 20%, #ffc371 80%);
+}
+.hero--6 {
+  background: linear-gradient(135deg, #ff9068 20%, #ff4b1f 80%);
+}
+.hero--7 {
+  background: linear-gradient(135deg, #ffa000 20%, #ff5000 80%);
+}
+.hero--8 {
+  background: linear-gradient(135deg, #b993d8 20%, #8ca6dc 80%);
+}
+.hero--9 {
+  background: linear-gradient(135deg, #3ca55f 20%, #b5ac59 80%);
+}
+.hero--10 {
+  background: linear-gradient(135deg, #2a99ef 20%, #52d9e5 80%);
+}
+.hero--11 {
+  background: linear-gradient(135deg, #225e9e 20%, #712c69 80%);
+}
+
+
+
+</style>
 </head>
-<body>
+<body style="background-color: #333;">
   <app-root></app-root>
 </body>
 </html>

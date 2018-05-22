@@ -1,20 +1,729 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!--NAVBAR-->
+<div class="navbar container" style="/*overflow: hidden;*/
+  background-color: #333;
+  /*position: fixed;*/
+  top: 0;
+  width: 100%;">
+	<div class="row col-md-12">
+		<div class="col-md-6 row">
+			<div class="col-md-3" style="padding-right: 0px; padding-left: 0px;">
+				<h5 style="color: white; padding-top: 5px;">COFFEE CLUB</h5>
+			</div>
+		  	
+			<div class="col-md-5 dropdown">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Admin
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+					<button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal01">Registrar Café</button>
+					<button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal06">Editar/Deletar Cafés</button>
+					<button class="dropdown-item" type="button">Pedidos</button>
+				</div>
+			</div>
+	  	</div>
+
+		<div class="col-md-6">
+			<button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal04" style="float: right;">Meu Pedido ({{pedidoAtualFuncionario.valorTotal | currency:'R$':2}})</button>
+		</div>
+  	</div>
+</div><!--/NAVBAR-->
+
+<!-- Modal 01: Registrar Café-->
+<div class="modal fade bd-example-modal-lg" id="exampleModal01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrar Café</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding-top: 30px; padding-bottom: 5px;">
+      	<form>
+	      	<!--Dados do Café-->
+	      	<div class="row">
+	      		<!--Imagem Café, Variedade Café-->
+	      		<div class="col-md-5" style="margin-bottom: 22px;">
+	      			<!--Imagem Café-->
+	      			<div style="height: 76%; max-height: 170px;">
+		      			<!--Xícara Imagem-->
+		      			<div style="position: absolute;">
+		      				<img style="width: 100%;" src="https://www.nespresso.com/shared_res/agility/grandCruCoffeeRange/commons/cupSizes/espresso_L.png">
+		      			</div>
+		      			<!--Cápsula Imagem-->
+		      			<div style="position: absolute; width: 60%; margin-left: 25%; margin-top: 25%;">
+		      				<img style="width: 100%;" id="insert_cafe_img"src="https://www.nespresso.com/ecom/medias/sys_master/public/9148240461854.png">
+		      			</div>	
+	      			</div><!--/Imagem Café-->
+	      			<!-- Definir Imagem Cápsula -->
+	      			<div class="row">
+	      				
+	      			</div>
+	      			<div class="col-md-12" style="margin-top: 35%;">
+			            <!--Intensidade-->
+			            <div class="form-group form-inline">
+			                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Imagem: </label>
+								<input type="text" class="form-control" id="insert_cafe_imagem" placeholder="https://nespresso.com...">
+			                </div>
+			            </div><!--/Variedade Café-->
+	      		</div><!--/Imagem Café-->
+
+	      		<!--Informações Café-->
+	      		<div class="col-md-7" style="margin-bottom: 22px; min-height: 224px;">
+	      			<!--Nome-->
+					<div class="form-group">
+	                  <input type="text" class="form-control form-control-lg" id="insert_cafe_nome" placeholder="Nome">
+	                </div>
+	      			<!--Mini-descrição-->
+					<div class="form-group">
+	                  <input type="text" class="form-control" id="insert_cafe_mini_descricao" placeholder="Mini-descrição (ex: Frutado e Equilibrado)">
+	                </div>
+	                <!--Descrição-->
+	                <div>
+	                	<div class="form-group">
+	    					<textarea class="form-control" id="insert_cafe_descricao" rows="3" placeholder="Descrição(ex: Este blend de Arábicas colombianos possui...)" style="font-size: 10pt;"></textarea>
+	  					</div>
+					</div>
+	      			<!--Preço Unidade-->
+					<div class="form-group form-inline">
+						<label class="my-1 mr-2" for="inlineFormCustomSelectPref"><h6>Unidade: R$</h6></label>
+	                	<input type="number" class="form-control col-md-2" id="insert_cafe_preco" placeholder="0,00" rows="1">
+	                </div>
+	                <hr>
+	                <!-- Variedade e Intensidade -->
+			      	<div class="row">
+			      		<div class="col-md-6" style="padding-right: 0px;">
+			      			<!--Variedade-->
+			                <div class="form-group form-inline">
+			                	<label class="my-1 mr-2" for="inlineFormCustomSelectPref">Variedade:</label>
+								<select class="custom-select col-md-6" id="insert_cafe_variedade">
+								  <option selected>Selecione</option>
+								  <option value="1">Intenso</option>
+								  <option value="2">Espresso</option>
+								  <option value="3">Pure Origin</option>
+								  <option value="4">Lungo</option>
+								  <option value="5">Decaffeinato</option>
+								  <option value="6">Variations</option>
+								</select>
+			                </div>
+			            </div>
+			            <div class="col-md-6">
+			                <!--Intensidade-->
+			                <div class="form-group form-inline">
+			                	<label class="my-1 mr-2" for="inlineFormCustomSelectPref">Intensidade:</label>
+								<select class="custom-select col-md-6" id="insert_cafe_intensidade">
+								  <option selected>Selecione</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								  <option value="11">11</option>
+								  <option value="12">12</option>
+								</select>
+			                </div>
+			            </div>
+			      	</div>
+	      		</div><!--/Informações Café-->
+	      	</div><!--/Dados do Café-->
+      	</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="registrarCafe();getAllCafes()">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div><!--/Modal 01: Registrar Café-->
+
+
+
+<!--Modal 03: Detalhes Café-->
+<div class="modal fade bd-example-modal-lg" id="exampleModal03" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Café</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 30px; padding-bottom: 5px;">
+
+      	<!--Dados do Café-->
+      	<div class="row" style="margin-bottom: 30px;">
+      		<!--Imagem Café, Variedade Café-->
+      		<div class="col-md-5" style="margin-bottom: 22px;">
+      			<!--Imagem Café-->
+      			<div style="height: 76%; max-height: 170px;">
+	      			<!--Xícara Imagem-->
+	      			<div style="position: absolute;">
+	      				<img style="width: 100%;" src="https://www.nespresso.com/shared_res/agility/grandCruCoffeeRange/commons/cupSizes/espresso_L.png">
+	      			</div>
+	      			<!--Cápsula Imagem-->
+	      			<div style="position: absolute; width: 60%; margin-left: 25%; margin-top: 25%;">
+	      				<img style="width: 100%;" src="{{cafeDetalhe?.imagem}}">
+	      			</div>	
+      			</div><!--/Imagem Café-->
+      			<!--Variedade Café-->
+      			<div style="text-align: center;">
+	      			<span style="height: 42px; border-radius: 20px; background-color: #decec9; padding: 5px 12px 8px 12px; font-style: italic; color: dimgrey;">
+	      				{{cafeDetalhe?.variedade}}
+	      			</span>
+      			</div><!--/Variedade Café-->
+      		</div><!--/Imagem Café-->
+      		<!--Informações Café-->
+      		<div class="col-md-7" style="margin-bottom: 22px; min-height: 224px;">
+      			<h3>{{cafeDetalhe?.nome}}</h3>
+      			<p>{{cafeDetalhe?.miniDescricao}}</p>
+      			<p style="font-size: 10pt;">{{cafeDetalhe?.descricao}}</p>
+      			<h6>Unidade: {{cafeDetalhe?.preco | currency:'R$':2}}</h6>
+      		</div>
+      	</div><!--/Dados do Café-->
+      	<!--Preço, Quantidade e Adicionar ao Pedido-->
+		<div class="row">
+			<div class="col-md-12" style="padding: 20px; padding-top: 0px;">
+				<div class="row">
+
+						
+					<div class="btn btn-primary" style="width:100%; height: 74px; margin-bottom: 0px; background-color: #decec9; border-color: lightgrey; color: dimgrey;">
+						<div class="row">
+							<!-- Preço 
+							<div class="col-md-3" style="padding-top: 18px;">
+								<div class="row">										
+									<!Café Preço
+									<div class="col-md-6">
+										<p>Preço: R$2,50</p>
+									</div>
+								</div>
+							</div> /Preço -->
+
+							<!-- Quantidade -->
+							<div class="col-md-7">
+								<div class="row">	
+									<!--Café Quantidade-->
+									<div class="col-md-12">
+										<div class="container">
+											<div class="row">
+												<div class="col-md-5" style="padding-top: 18px;">
+													<p >Quantidade:</p>		
+												</div>
+												<!-- Input e botões + e - -->
+												<div class="col-md-7" style="padding-top: 11px;">
+													<div class="row">
+														<div class="col-md-7 form-group">
+															<input type="text" class="form-control" id="" style="text-align: center;">		
+														</div>
+														<div class="col-md-5" style="padding-left: 0px; padding-right: 0px;">
+															<button type="button" class="btn btn-success" style="border-radius: 20px;">
+																<div style="width: 12px;">
+																		+
+																</div>
+															</button>
+															<button type="button" class="btn btn-success" style="border-radius: 20px;">
+																<div style="width: 12px;">
+																		-
+																</div>
+															</button>		
+														</div>		
+													</div>
+												</div><!-- /Input e botões + e - -->
+											</div>	
+										</div>
+									</div><!-- /Café Quantidade-->
+								</div>
+							</div><!-- /Quantidade -->
+							<!-- Botão Adicionaro ao Pedido-->
+							<div class="col-md-5">
+								<div class="row">
+									<div class="col-md-12" style="padding-top: 11px;">
+										<button type="button" class="btn btn-success">Adicionar à Lista</button>
+									</div>
+								</div><!-- /Botão Adicionaro ao Pedido-->
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div><!--/Preço, Quantidade e Adicionar ao Pedido -->
+
+      </div>
+
+    </div>
+  </div>
+</div><!-- /Modal 03: Detalhes Café -->
+
+
+
+
+<!--Modal 04: Carrinho de Pedido-->
+<div class="modal fade bd-example-modal-lg" id="exampleModal04" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+	    <!--TESTANDO LARGURA MODAL-->
+	    <div>
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Meu Pedido</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" style="padding: 30px; padding-bottom: 5px;">
+
+					<!--Preço, Quantidade e excluir item -->
+					<div class="row">
+						<div class="col-md-12" style="padding: 20px; padding-top: 0px;">
+							<!-- *ngFor="let item of intensPedidoAtual"-->
+							<div class="row" *ngFor="let item of itensPedidoAtual" >
+
+								<!--Lista Itens-->
+								<div class="btn btn-primary" style="width:100%; height: 74px; margin-bottom: 10px; background-color: #decec9; border-color: lightgrey; color: dimgrey;">
+									<div class="row">
+										<!--Capsula Imagem-->
+										<div class="col-md-1">
+											<img style="width: 170%;" src="{{item.cafe.imagem}}">
+										</div><!--/Capsula Imagem-->
+										<!-- Nome e Preço --> 
+										<div class="col-md-5" style="padding-top: 18px;">
+											<div class="row">
+												<!--Café Nome-->
+												<div class="col-md-9">
+													<p style="float: left;">{{item.cafe.nome}}</p>
+												</div>										
+												<!--Café Preço-->
+												<div class="col-md-3">
+													<p>Und: {{item.cafe.preco | currency:'R$':2}}</p>
+												</div>
+											</div>
+										</div> <!--/Preço -->
+
+										<!-- Quantidade -->
+										<div class="col-md-5">
+											<div class="row">	
+												<!--Café Quantidade-->
+												<div class="col-md-12">
+													<div class="container">
+														<div class="row">
+															<div class="col-md-5" style="padding-top: 18px; padding-right: 0px;">
+																<p>Quantidade:</p>		
+															</div>
+															<!-- Input e botões + e - -->
+															<div class="col-md-7" style="padding-top: 11px; padding-left: 0px;">
+																<div class="row">
+																	<div class="col-md-7 form-group">
+																		<input type="text" class="form-control" [value]="item?.quantidade" id="" style="text-align: center;">		
+																	</div>
+																	<div class="col-md-5" style="padding-left: 0px; padding-right: 0px;">
+																		<button type="button" class="btn btn-success" style="border-radius: 
+																			20px;" (click)="qtdAumentar(item)"> 
+																			<div style="width: 12px;">
+																					+
+																			</div>
+																		</button>
+																		<button type="button" class="btn btn-success" style="border-radius: 
+																			20px;" (click)="qtdDiminuir(item)">
+																			<div style="width: 12px;">
+																					-
+																			</div>
+																		</button>		
+																	</div>		
+																</div>
+															</div><!-- /Input e botões + e - -->
+														</div>	
+													</div>
+												</div><!-- /Café Quantidade-->
+											</div>
+										</div><!-- /Quantidade -->
+										<!-- Botão Deletar Item-->
+										<div class="col-md-1">
+											<div class="row">
+												<div class="col-md-12" style="padding-top: 11px;">
+													<button type="button" class="btn btn-secondary" style="color: grey; 
+														background-color: #bfb3af; border-color: lightgrey;" 
+														(click)="excluirItem(item)">X
+													</button>
+												</div>
+											</div><!-- /Botão Deletar Item-->
+										</div>
+									</div>
+
+								</div><!--/Lista Itens-->
+							</div>
+						</div>
+					</div><!--/Preço, Quantidade e excluir item  -->
+
+					<h5 style="float: right; margin-bottom: 20px;">VALOR TOTAL: {{pedidoAtualFuncionario.valorTotal | currency:'R$':2}}</h5>
+	      </div>    	
+    </div><!--TESTANDO LARGURA MODAL-->
+
+    	<div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#exampleModal05" (click)="inserirPedidoFuncionario(pedidoAtualFuncionario)">Confirmar Pedido</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /Modal 04: Carrinho de Pedido -->
+
+
+
+	
+<!-- Modal 05: Aviso de Sucesso-->
+<div class="modal fade" id="exampleModal05" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Envio confirmado</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div style="text-align: center;">
+					<img style="width: 223px;" src="https://logopond.com/logos/d949d7c7e006e681212b86df5099677d.png">
+					<h6>Seu pedido foi enviado com sucesso :)</h6>
+					<p>Consulte a previsão de entrega com a administração.</p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+				<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+			</div>
+		</div>
+	</div>
+</div><!-- /Modal 05: Aviso de Sucesso-->
+
+
+<!-- Modal 06: Editar / Deletar Cafe -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal06" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Editar Cafés</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body" style="padding-top: 30px; padding-bottom: 5px; padding-right: 30px; padding-left: 30px;">
+				<form>
+					<!--Dados do Café-->
+					<div class="row">
+						<!--Rolage cafés-->
+						<div class="col-md-5" style="margin-bottom: 22px; overflow: auto; max-height: 413px;">
+
+							<!-- Insere lista de cafés aqui do editar / deletar -->
+							<!-- LISTA DE CAFÉS -->
+							<div class="row" id="listascafe">
+									<div class="col-md-12" style="padding: 20px; padding-top: 0px;">
+										<!-- *ngFor="let cafe of cafes"-->
+										<div class="row" *ngFor="let cafe of cafes">
+											<!--ITEM CAFÉ-->
+											<div class="btn btn-primary" style="width:100%; height: 74px; margin-bottom: 10px; 
+												background-color: #decec9; border-color: lightgrey; color: dimgrey;"
+												(click) = detalharCafe(cafe) >
+												<form>
+												<div class="row">
+													<div class="col-md-3" data-toggle="modal" data-target="#exampleModal03">
+														<img style="width: 56px;" src="{{cafe?.imagem}}">
+													</div>
+					
+													<!-- Nome, Preço -->
+													<div class="col-md-9" data-toggle="modal" data-target="#exampleModal03" style="padding-top: 18px;">
+														<div class="row">
+															<!--Café Nome-->
+															<div class="col-md-12">
+																<p style="float: left;"> {{cafe?.nome}} </p>
+															</div>
+															<!--Café Preço
+															<div class="col-md-6">
+																<p> {{cafe?.preco | currency:'R$':2}} </p>
+															</div> /Café Preço -->
+														</div>
+													</div><!-- /Nome, Preço -->
+												</div>
+												</form>
+											</div><!--/ITEM CAFÉ-->
+										</div><!--/*ngFor="let cafe of cafes"-->
+									</div>
+								</div>
+								<!-- /LISTA DE CAFÉS -->
+							<!-- /Insere lista de cafés aqui do editar /deletar -->
+
+						</div><!--/Rolagem cafés-->
+	  
+						<!--Informações Café-->
+						<div class="col-md-7" style="margin-bottom: 22px; min-height: 224px;">
+							<!--Nome-->
+						  <div class="form-group">
+							<input type="text" class="form-control form-control-lg" id="insert_cafe_nome" placeholder="Nome">
+						  </div>
+							<!--Mini-descrição-->
+						  <div class="form-group">
+							<input type="text" class="form-control" id="insert_cafe_mini_descricao" placeholder="Mini-descrição (ex: Frutado e Equilibrado)">
+						  </div>
+						  <!--Descrição-->
+						  <div>
+							  <div class="form-group">
+								  <textarea class="form-control" id="insert_cafe_descricao" rows="3" placeholder="Descrição(ex: Este blend de Arábicas colombianos possui...)" style="font-size: 10pt;"></textarea>
+								</div>
+						  </div>
+							<!--Preço Unidade-->
+						  <div class="form-group form-inline">
+							  <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><h6>Unidade: R$</h6></label>
+							  <input type="number" class="form-control col-md-2" id="insert_cafe_preco" placeholder="0,00" rows="1">
+						  </div>
+						  <hr>
+						  <!-- Variedade e Intensidade -->
+							<div class="row">
+								<div class="col-md-6" style="padding-right: 0px;">
+									<!--Variedade-->
+								  <div class="form-group form-inline">
+									  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Variedade:</label>
+									  <select class="custom-select col-md-6" id="insert_cafe_variedade">
+										<option selected>Selecione</option>
+										<option value="1">Intenso</option>
+										<option value="2">Espresso</option>
+										<option value="3">Pure Origin</option>
+										<option value="4">Lungo</option>
+										<option value="5">Decaffeinato</option>
+										<option value="6">Variations</option>
+									  </select>
+								  </div>
+							  </div>
+							  <div class="col-md-6">
+								  <!--Intensidade-->
+								  <div class="form-group form-inline">
+									  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Intensidade:</label>
+									  <select class="custom-select col-md-6" id="insert_cafe_intensidade">
+										<option selected>Selecione</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+									  </select>
+								  </div>
+							  </div>
+							</div>
+									<!--Img Cápsula-->
+									<div class="form-group form-inline">
+										<label class="my-1 mr-2" for="inlineFormCustomSelectPref">Imagem: </label>
+											<input type="text" class="form-control" id="insert_cafe_imagem" placeholder="https://nespresso.com...">
+									</div><!-- Img Cápsula -->
+						</div><!--/Informações Café-->
+					</div><!--/Dados do Café-->
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Deletar Café</button>
+			  <button type="button" class="btn btn-primary" (click)="registrarCafe()">Atualizar Café</button>
+			</div>
+		  </div>
+		</div>
+	  </div><!--/Modal 06: Editar / Deletar Cafe-->
+
+
+
+
+
+<!-- Slider -->
+<!-- /Slider -->
+
+<!--HEADER / HERO -->
+<div class="hero hero--4" style="color: white;">
+	<div style="width: 90%; margin: auto;">
+		<div class="container" style="width: 100%; margin: auto; padding: 4em; padding-bottom: 0.5em;">
+			<div class="row" style="margin-bottom: 0px;">
+
+				<div class="col-md-6" style="margin-bottom: 20px;">
+					<img style="width: 100%;" src="https://interactive.guim.co.uk/next-gen/labs-boot/2017/mar/nespresso/img/capsules-mobile.dbb18dc.png">
+				</div>
+
+				<div class="col-md-6">
+					<h1 style="font-family: 'Montserrat', sans-serif; font-weight: 200; line-height: 62px; font-size: 4em; margin-bottom: 19px;">O melhor café, na melhor hora</h1>
+					<p style="font-size: 19pt; line-height: 1.2em; font-weight: lighter; color: burlywood; margin-bottom: 23px;">Café no trabalho? Consulte preços, detalhes e faça seu pedido. Vem pro clube!</p>
+					<button type="button" class="btn btn-success col-md-6 " style="padding: 16px; margin-bottom: 20px; width: 100%;">CONFIRA NOSSOS CAFÉS</button>
+				</div>
+
+			</div>	
+		</div>
+	</div>
+</div> <!--HEADER / HERO -->
+
+
+
+
+<!--BOTÕES CAFÉS-->
+<div style="background-color: #e5dcda;">
+	<div style="width: 90%; margin: auto;">
+		<div class="container" style="width: 100%; margin: auto; padding: 4em;">	
+
+			<!-- ROW BOTOES CAFÉS-->
+			<div class="row">
+
+				<div class="col-md-3" style="padding: 20px; padding-top: 0px;">
+					<div class="row">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal01" style="width:100%; height: 74px; margin-bottom: 0px;">
+	  					Todos os Cafés
+						</button>
+					</div>
+				</div>
+
+				<div class="col-md-3" style="padding: 20px; padding-top: 0px;">
+					<div class="row">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal01" style="width:100%; height: 74px; margin-bottom: 0px;">
+	  					Cafés por Variedades
+						</button>
+					</div>
+				</div>
+
+				<div class="col-md-3" style="padding: 20px; padding-top: 0px;">
+					<div class="row">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal01" style="width:100%; height: 74px; margin-bottom: 0px;">
+	  					Cafés por Intensidade
+						</button>
+					</div>
+				</div>
+
+				<div class="col-md-3" style="padding: 20px; padding-top: 0px;">
+					<div class="row">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal01" style="width:100%; height: 74px; margin-bottom: 0px;">
+	  					Cafés por Perfil Aromático
+						</button>
+					</div>
+				</div>
+
+			</div><!-- /ROW BOTOES CAFÉS-->
+
+			<!-- LISTA DE CAFÉS -->
+			<div class="row" id="listascafe">
+				<div class="col-md-12" style="padding: 20px; padding-top: 0px;">
+					<!-- *ngFor="let cafe of cafes"-->
+					<div class="row" *ngFor="let cafe of cafes">
+						<!--ITEM CAFÉ-->
+						<div class="btn btn-primary" style="width:100%; height: 74px; margin-bottom: 10px; 
+							background-color: #decec9; border-color: lightgrey; color: dimgrey;"
+							(click) = detalharCafe(cafe) >
+							<form>
+							<div class="row">
+								<div class="col-md-1" data-toggle="modal" data-target="#exampleModal03">
+									<img style="width: 100%;" src="{{cafe?.imagem}}">
+								</div>
+
+								<!-- Nome, Preço -->
+								<div class="col-md-4" data-toggle="modal" data-target="#exampleModal03" style="padding-top: 18px;">
+									<div class="row">
+										<!--Café Nome-->
+										<div class="col-md-6">
+											<p style="float: left;"> {{cafe?.nome}} </p>
+										</div>
+										<!--Café Preço-->
+										<div class="col-md-6">
+											<p> {{cafe?.preco | currency:'R$':2}} </p>
+										</div>
+                  </div>
+                </div><!-- /Nome, Preço -->
+								<!-- Quantidade -->
+								<div class="col-md-5">
+									<div class="row">	
+										<!--Café Quantidade-->
+										<div class="col-md-12 form-group">
+											<div class="container">
+												<div class="row">
+													<div class="col-md-5" style="padding-top: 18px;">
+														<p style="float: right;">Quantidade:</p>		
+													</div>
+													<!-- Input e botões + e - -->
+													<div class="col-md-7" style="padding-top: 11px;">
+														<div class="row">
+															<div class="col-md-6 form-group">
+																<input type="number" [value]="cafe.qtd" class="form-control"  
+																style="text-align: center;" placeholder="0" id="">		
+															</div>
+															<div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+																<button type="button" class="btn btn-success" style="border-radius: 
+																	20px;" (click)="qtdCafeAumentar(cafe)">
+																	<div style="width: 12px;">
+																		+
+																	</div>
+																</button>
+																<button type="button" class="btn btn-success" style="border-radius: 
+																	20px;" (click)="qtdCafeDiminuir(cafe)">
+																	<div style="width: 12px;">
+																		-
+																	</div>
+																</button>
+															</div>		
+														</div>
+													</div><!-- /Input e botões + e - -->
+												</div>	
+											</div>
+										</div><!-- /Café Quantidade-->
+									</div>
+								</div><!-- /Quantidade -->
+								<!-- Botão Adicionar ao Pedido-->
+								<div class="col-md-2">
+									<div class="row">
+										<div class="col-md-12" style="padding-top: 11px; padding-left: 0px;">
+											<button type="button" class="btn btn-success dropdown-toggle" (click)="adicionarItem(cafe, cafe?.qtd)" 
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adicionar à Lista</button>
+											<div class="dropdown-menu" style="text-align: center; font-size: 10pt;">
+													<!-- Dropdown menu links -->
+													{{addItemFeedbackResultado}}
+											</div>
+										</div>
+									</div>
+								</div><!-- /Botão adicionar ao pedido-->
+							</div>
+						</form>
+						</div><!--/ITEM CAFÉ-->
+					</div><!--/*ngFor="let cafe of cafes"-->
+				</div>
+			</div>
+			<!-- /LISTA DE CAFÉS -->
+		</div>
+	</div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
+
+
+
+
+
+
+
+<!--NAVBAR
+<div class="navbar" style="/*overflow: hidden;*/
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;">
+	<a href="#home">COFFEE CLUB</a>
+	<div class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Admin
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+	    <button class="dropdown-item" type="button" data-toggle="modal" data-target="#exampleModal01">Registrar Café</button>
+	    <button class="dropdown-item" type="button">Editar/Deletar Cafés</button>
+	    <button class="dropdown-item" type="button">Pedidos</button>
+	  </div>
+	</div>
+
+	<a href="#news">News</a>
+	<a href="#contact" data-toggle="modal" data-target="#exampleModal04">Meu Pedido ({{pedidoAtualFuncionario.valorTotal | currency:'R$':2}})</a>
+</div>
+NAVBAR -->
+
+
+
 
